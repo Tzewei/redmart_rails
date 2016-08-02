@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :products
   resources :users
+  resources :reviews
   #resources :users, except: :index
 
   # static pages routes, not connected to models
