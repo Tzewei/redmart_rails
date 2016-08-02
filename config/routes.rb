@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :products
   resources :users
+  #resources :users, except: :index
 
   # static pages routes, not connected to models
   get '/help',    to: 'static_pages#help', as: 'helf'
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
 
   # dynamic routes
   get '/signup',  to: 'users#new'
+  post '/signup',  to: 'users#create'
 
 
   # login routes

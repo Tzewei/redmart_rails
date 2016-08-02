@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
-here at user.show.html.erb
+<% provide(:title, "Profile") %>
+<h1>Display My Profile</h1>
+
 
 
 <p>
@@ -23,4 +25,5 @@ here at user.show.html.erb
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to 'Back', root_path %>|
+<%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %>

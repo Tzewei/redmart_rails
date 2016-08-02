@@ -1,18 +1,3 @@
-<!-- <header class="navbar navbar-fixed-top navbar-inverse">
-<div class="container">
-<%= link_to "RedMart", root_path, id: "logo" %>
-<nav>
-  <ul class="nav navbar-nav navbar-right">
-    <li><%= link_to "About",   about_path %></li>
-    <li><%= link_to "Help",   helf_path %></li>
-    <li><%= link_to "Log in", login_path %></li>
-    <li><%= link_to "Show all Users", users_path %></li>
-  </ul>
-</nav>
-</div>
-</header> -->
-
-
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
@@ -23,38 +8,25 @@
         <span class="icon-bar"></span>
       </button>
       <%= link_to "Redmart", root_path, class: 'navbar-brand' %>
-      <!-- <a class="navbar-brand" href="#">Twitter</a> -->
+      <!-- <a class="navbar-brand" href="#">Redmart</a> -->
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li>
-          <%= link_to "Home", root_path %>
-        </li>
-        <li>
-          <%= link_to "About", about_path %>
-        </li>
-
-        <!-- this line For testing -->
-        <li><%= link_to "Show all Users", users_path %></li>
+        <li><%= link_to "Home", root_path %></li>
+        <li><%= link_to "About", about_path %></li>
 
         <% if logged_in? %> <!-- Already logged in_-->
-          <li>
-              <%= link_to "My page", current_user %>
-          </li>
-          <li>
-              <%= link_to "Edit", edit_user_path(current_user) %>
-          </li>
-          <li>
-            <%= link_to "Logout", logout_path, method: :delete %>
-          </li>
+          <li><%= link_to "All Users", users_path %></li>
+          <li><%= link_to "My Profile", current_user %></li>
+          <li><%= link_to "Edit", edit_user_path(current_user) %></li>
+          <li><%= link_to "Logout", logout_path, method: :delete %></li>
+
         <% else %>
-          <li>
-            <%= link_to "Signup", signup_path %>
-          </li>
-          <li>
-            <%= link_to "Login", login_path %>
-          </li>
+
+          <li><%= link_to "Signup", signup_path %></li>
+          <li><%= link_to "Login", login_path %></li>
         <% end %>
+
       </ul>
     </div><!--/.nav-collapse -->
   </div>

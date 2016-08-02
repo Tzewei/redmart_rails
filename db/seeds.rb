@@ -5,3 +5,26 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+
+
+# seeds.rb is a way of automating the population of the database with testing data.
+
+(0..10).each do |i|
+    product.create!(
+      productname: Faker::Vehicle.manufacture,
+      price: Faker::Number.decimal(2)
+    )
+end
+#
+#
+#
+#
+# (0..5).each do |i|
+#     user.create!(
+#       name: Faker::StarWars.character,
+#       email: Faker::Internet.email,
+#       address: Faker::Address.street_address
+#     )
+# end
