@@ -1,15 +1,35 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Show page of <%=@product.productname%></h2>
-
-<p><strong>Product Name: <%=@product.productname%></strong></p>
-<p><strong>All Reviews: <%=%></strong></p>
+<h1>Product page of <%=@product.productname%></h1>
 
 
+<p>All Reviews for <%=@product.productname%> : </p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Review</th>
+      <th>Reviewed by</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @product.reviews.each do |review| %>
+      <tr>
+        <td><%= review.userreview %> </td>
+        <td><%= review.user.name %> </td>
+        <td><%= link_to 'Details', review_path %></td>
+        <td><%= link_to 'Edit', edit_review_path(review) %></td>
+        <td><%= link_to 'Delete', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+      <% end %>
+  </tbody>
+
+</table>
 
 <ol>
   <% @product.reviews.each do |review| %>
-    <li><%= review.userreview %>| <%= review.user.name %></li>
+    <li><%= review.user.name %> |<%= review.userreview %> </li>
 
   <% end %>
 </ol>
