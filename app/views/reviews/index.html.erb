@@ -1,11 +1,24 @@
-test
+
 <h1>Reviews</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Reviewname</th>
-      <th>Price</th>
+      <th>User Review</th>
+      <th>User ID</th>
+      <th>Product ID</th>
       <th colspan="3"></th>
     </tr>
   </thead>
+
+  <tbody>
+    <% @reviews.each do |review| %>
+      <tr>
+        <td><%= review.userreview %></td>
+        <td><%= review.user.name %></td>
+        <td><%= review.product.productname %></td>
+      </tr>
+    <% end %>
+
+  </tbody>
+  </table>
