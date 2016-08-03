@@ -2,8 +2,6 @@
 <% provide(:title, "Profile") %>
 <h1>Display My Profile</h1>
 
-
-
 <p>
   <strong>Name:</strong>
   <%= @user.name %>
@@ -24,7 +22,9 @@
   <%= @user.password_digest %>
 </p>
 
-<div class="col-md-8">
+<!-- <div class="col-md-8"> -->
+<div class="review_in_user">
+
   <% if @user.reviews.any? %>
     <h3>Reviews (<%= @user.reviews.count %>)</h3>
     <ol class="reviews">

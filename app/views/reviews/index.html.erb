@@ -17,6 +17,7 @@
         <td><%= review.userreview %></td>
         <td><%= review.user.name %></td>
         <td><%= review.product.productname %></td>
+        <td><%= link_to 'Edit', edit_review_path(review) %></td>
       </tr>
     <% end %>
 
