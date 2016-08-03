@@ -27,9 +27,10 @@
 
   <% if @user.reviews.any? %>
     <h3>Reviews (<%= @user.reviews.count %>)</h3>
-    <ol class="reviews">
+    <ol class="reviews">a
       <%= render @reviews %>
     </ol>
+    <!-- paginate will split list into various pages -->
     <%= will_paginate @reviews %>
   <% end %>
 </div>
