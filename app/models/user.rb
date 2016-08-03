@@ -28,6 +28,7 @@ class User < ApplicationRecord
 
 # Relationship model
   has_many :reviews, dependent: :destroy
+  has_many :products, through: :reviews
 
 
 end

@@ -1,3 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<h2>Show page</h2>
+<h1>Show page of <%=@product.productname%></h2>
+
+<p><strong>Product Name: <%=@product.productname%></strong></p>
+<p><strong>All Reviews: <%=%></strong></p>
+
+
+
+<ol>
+  <% @product.reviews.each do |review| %>
+    <li><%= review.userreview %>| <%= review.user.name %></li>
+
+  <% end %>
+</ol>
