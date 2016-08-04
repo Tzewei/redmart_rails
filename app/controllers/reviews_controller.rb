@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+  before_action :require_login, only: [:create, :destroy]
   # GET /reviews
   # GET /reviews.json
   def index
