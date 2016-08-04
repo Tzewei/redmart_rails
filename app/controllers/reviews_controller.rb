@@ -54,6 +54,7 @@ class ReviewsController < ApplicationController
   # PATCH/PUT /reviews/1
   # PATCH/PUT /reviews/1.json
   def update
+    @review = Review.find(params[:id])
     respond_to do |format|
       if @review.update(review_params)
         format.html { redirect_to @review, notice: 'Review was successfully updated.' }
@@ -76,6 +77,7 @@ class ReviewsController < ApplicationController
   # end
 
   def destroy
+    @review = Review.find(params[:id])
     @review.destroy
     flash[:success] = "Review deleted"
     redirect_back(fallback_location: root_url)

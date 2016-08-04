@@ -1,64 +1,59 @@
-<p id="notice"><%= notice %></p>
-<% provide(:title, "Profile") %>
-<h1>Display My Profile</h1>
+<h1> Profile of <%= @user.name %> </h1>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
+<h3>Details: </h3>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Address</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @user.name %></td>
+        <td><%= @user.email %></td>
+        <td><%= @user.address %></td>
+        <td><%= link_to 'Edit', edit_user_path(@user) %></td>
+        <td>
+          <% if current_user.admin?%>
+            <%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
 
-<p>
-  <strong>Address:</strong>
-  <%= @user.address %>
-</p>
+<% if @user.reviews.any? %>
+  <h3><%= @user.name %> has a total of <%= @user.reviews.count %> reviews:</h3>
 
-<p>
-  <strong>Password:</strong>
-  <%= @user.password_digest %>
-</p>
-
-<!-- <div class="col-md-8"> -->
-<div class="review_in_user">
-
-  <% if @user.reviews.any? %>
-    <h3>Total <%= @user.reviews.count %> Reviews</h3>
-
-    <table>
+<div class="table-responsive">
+  <table class="table">
       <thead>
         <tr>
-          <th>Review No</th>
-          <th>User Name </th>
-          <th>Comment </th>
           <th>Product Name </th>
+          <th>Reviews </th>
         </tr>
       </thead>
-
       <tbody>
         <% @reviews.each do |review| %>
           <tr>
-            <td><%= review.id %> </td>
-            <td><%= link_to review.user.name, review.user %></td>
-            <td><%= review.userreview %> </td>
             <td><%= review.product.productname %> </td>
+            <td><%= review.userreview %> </td>
             <td><%= link_to 'Details', review_path %></td>
             <td><%= link_to 'Edit', edit_review_path(review) %></td>
             <td><%= link_to 'Delete', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
           <% end %>
       </tbody>
-
     </table>
+  </div>
 
+<%else%>
+  <h3>User has no review!</h3>
+<% end %>
 
-  <% end %>
-</div>
-
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', root_path %>|
-<%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Back to main', root_path %>

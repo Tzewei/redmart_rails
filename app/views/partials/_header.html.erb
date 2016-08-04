@@ -16,13 +16,18 @@
         <li><%= link_to "About", about_path %></li>
 
         <% if logged_in? %> <!-- Already logged in_-->
-          <li><%= link_to "All Users(test)", users_path %></li>
-          <li><%= link_to "All Review(test)", reviews_path %></li>
-          <li><%= link_to "All Product(test)", products_path %></li>
-          <li><%= link_to "My Profile", current_user %></li>
-          <li><%= link_to "Edit", edit_user_path(current_user) %></li>
-          <li><%= link_to "Logout", logout_path, method: :delete %></li>
-
+          <% if current_user.admin?%>
+            <li><%= link_to "All Users(test)", users_path %></li>
+            <li><%= link_to "All Review(test)", reviews_path %></li>
+            <li><%= link_to "All Product(test)", products_path %></li>
+            <li><%= link_to "My Profile", current_user %></li>
+            <li><%= link_to "Edit", edit_user_path(current_user) %></li>
+            <li><%= link_to "Logout", logout_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to "My Profile", current_user %></li>
+            <li><%= link_to "Edit", edit_user_path(current_user) %></li>
+            <li><%= link_to "Logout", logout_path, method: :delete %></li>
+          <% end %>
 
         <% else %>
 
