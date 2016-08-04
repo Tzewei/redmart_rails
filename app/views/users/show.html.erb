@@ -28,14 +28,15 @@
 
 
 <% if @user.reviews.any? %>
-  <h3><%= @user.name %> has a total of <%= @user.reviews.count %> reviews:</h3>
-
+  <!-- <h3><%= @user.name %> has a total of <%= @user.reviews.count %> reviews:</h3> -->
+  <h3><%= @user.name %> has a total of <%= pluralize(@user.reviews.count, "review")%></h3>
 <div class="table-responsive">
   <table class="table">
       <thead>
         <tr>
           <th>Product Name </th>
           <th>Reviews </th>
+          <th>Created Date</th>
         </tr>
       </thead>
       <tbody>
@@ -43,7 +44,8 @@
           <tr>
             <td><%= review.product.productname %> </td>
             <td><%= review.userreview %> </td>
-            <td><%= link_to 'Details', review_path %></td>
+            <td><%= review.created_at %></td>
+            <td><%= link_to 'Details', review_path(review) %></td>
             <td><%= link_to 'Edit', edit_review_path(review) %></td>
             <td><%= link_to 'Delete', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>

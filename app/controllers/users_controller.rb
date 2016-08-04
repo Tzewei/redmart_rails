@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   # check if needs log out again
   before_action :require_logout, only:   [:new]
 
-  # before_action :admin_user,     only: :destroy
+  before_action :admin_user,     only: :destroy
 
   # GET /users
   # GET /users.json

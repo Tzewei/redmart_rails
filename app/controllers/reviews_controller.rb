@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :require_login, only: [:create, :destroy]
+
   # GET /reviews
   # GET /reviews.json
   def index
@@ -100,5 +101,7 @@ class ReviewsController < ApplicationController
     def review_params
       params.require(:review).permit(:userreview)
     end
+
+  
 
 end

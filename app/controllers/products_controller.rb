@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_product, only: [:show,  :update]
+  before_action :admin_user,  only: [:destroy, :edit]
 
   # GET /products
   # GET /products.json
@@ -74,4 +75,9 @@ class ProductsController < ApplicationController
     def product_params
       params.require(:product).permit(:productname, :price)
     end
+
+    # Confirms an admin user.
+     def admin_user
+       redirect_to(root_url) unless current_user.admin?
+     end
 end
