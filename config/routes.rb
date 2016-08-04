@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
   root 'static_pages#home'
 
+  post '/product/:id/review/new', to: 'review#create'
+
   resources :products
   resources :users
   resources :reviews
+  resources :products do
+    resources :reviews
+  end
   #resources :users, except: :index
 
   # static pages routes, not connected to models

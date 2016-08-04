@@ -28,12 +28,16 @@ class ReviewsController < ApplicationController
   # POST /reviews
   # POST /reviews.json
   def create
-    @review = current_user.reviews.build(review_params)
-    if @review.save
+    @product = Product.find(params[:product_id])
+    @review = @product.reviews.build(review_params)
+    @review.user_id = current_user.id
+
+    # @review = current_user.reviews.build(review_params)
+    if @review.save!
       flash[:success] = "Review created!"
-      redirect_to root_url
+      redirect_to @product
     else
-      render 'static_pages/home'
+      render @product
     end
     # @review = Review.new(review_params)
     # respond_to do |format|

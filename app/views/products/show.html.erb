@@ -44,7 +44,7 @@
 <span><%= pluralize(current_user.reviews.count, "review")%>
 
 <!-- shared/micropost form -->
-<%= form_for(@review) do |f| %>
+<%= form_for([@product, @product.reviews.build]) do |f| %>
   <%#= render 'shared/error_messages', object: f.object %>
   <div class="field">
     <%= f.text_area :userreview, placeholder: "Compose new review"%>
