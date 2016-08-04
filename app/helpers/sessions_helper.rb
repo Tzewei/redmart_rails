@@ -5,10 +5,18 @@ module SessionsHelper
       session[:user_id] = user.id
     end
 
-  # Get current user from session id, always check from the latest session
-  def current_user
-    @current_user ||= User.find_by(id: session[:user_id])
-  end
+    # Returns the user corresponding to the remember token cookie.
+ def current_user
+   if (user_id = session[:user_id]) #note this is not a comparision, it's setting user_id whilst checking if session[:user_id is blank]
+      @current_user ||= User.find_by(id: user_id)
+    elsif (user_id = cookies.signed[:user_id]) #note this is not a comparision, it's setting user_id whilst checking if session[:user_id is blank]
+      user = User.find_by(id: user_id)
+      if user && user.authenticated?(:remember, cookies[:remember_token])
+        log_in user
+        @current_user = user
+      end
+    end
+ end
 
   # check if passed user is current_user
   def current_user?(user)

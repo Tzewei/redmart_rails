@@ -2,7 +2,14 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
 
-  def hello
-    render html: "hello World!"
+  private
+  
+  def require_login
+    #check if the user is logged in or not
+    unless logged_in?
+      store_location
+      flash[:danger] = "Please login!!! "
+      redirect_to root_url # halts request cycle
+    end
   end
 end

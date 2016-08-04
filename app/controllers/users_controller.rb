@@ -65,6 +65,7 @@ class UsersController < ApplicationController
         format.html { render :edit }
         # format.json { render json: @user.errors, status: :unprocessable_entity }
       end
+
     end
   end
 
@@ -89,14 +90,7 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
 
-    def require_login
-      #check if the user is logged in or not
-      unless logged_in?
-        store_location
-        flash[:danger] = "Please login!!! "
-        redirect_to root_url # halts request cycle
-      end
-    end
+
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
@@ -121,7 +115,7 @@ class UsersController < ApplicationController
     end
 
     # Confirms an admin user.
-     def admin_user
-       redirect_to(root_url) unless current_user.admin?
-     end
+    #  def admin_user
+    #    redirect_to(root_url) unless current_user.admin?
+    #  end
 end

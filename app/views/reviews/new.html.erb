@@ -1,5 +1,14 @@
 <h1>New Review</h1>
 
+<p>review: <%= @review %></p>
+<p>user:<%= @users%> </p>
+<p>product:<%= @product%> </p>
 
+<p>
+<%=@review %>
+</p>
+
+
+<%= render 'form', review: @review %>
 
 <%= link_to 'Back', reviews_path %>

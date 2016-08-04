@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-25.times do |n|
+10.times do |n|
   # productname = Faker::Vehicle.manufacture
   productname = Faker::Beer.name
   price = Faker::Number.decimal(2)
@@ -16,14 +16,16 @@
                   price: price)
 end
 
-# 5.times do |n|
-#   name = Faker::StarWars.character
-#   email = "test#{n+1}@gmail.com"
-#   address = Faker::Address.street_address
-#
-#
-#   User.create!( name: name,
-#                 email: email,
-#                 address: address,
-#
-# end
+5.times do |n|
+  name = Faker::StarWars.character
+  email = "test#{n+1}@gmail.com"
+  address = Faker::Address.street_address
+  password = "1234"
+
+  User.create!( name: name,
+                email: email,
+                address: address,
+                password: password,
+                password_confirmation: password)
+
+end

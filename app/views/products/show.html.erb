@@ -24,12 +24,19 @@
       </tr>
       <% end %>
   </tbody>
-
 </table>
 
-<ol>
-  <% @product.reviews.each do |review| %>
-    <li><%= review.user.name %> |<%= review.userreview %> </li>
 
-  <% end %>
-</ol>
+<!-- <p>shared/user_info</p> -->
+  <h1><%= current_user.name %></h1>
+<span><%= link_to "view my profile", current_user %></span>
+<span><%= pluralize(current_user.reviews.count, "review")%>
+
+<!-- shared/micropost form -->
+<%= form_for(@review) do |f| %>
+  <%#= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_area :userreview, placeholder: "Compose new review"%>
+  </div>
+  <%= f.submit "Post", class: "btn btn-primary" %>
+<% end %>
