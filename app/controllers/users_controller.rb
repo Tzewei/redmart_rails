@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
   # setting default user, based on the id
-  before_action :set_user,       only:   [:show, :edit, :update, :destroy]
+  before_action :set_user,       only:   [:edit, :update, :destroy]
 
   # check if already logged in
   before_action :require_login,  only:   [:show, :edit, :update, :destroy]
 
   # check if correct user
-  before_action :correct_user,   only:   [:edit, :update, :destroy]
+  before_action :correct_user,   only:   [:edit, :update]
 
   # check if needs log out again
   before_action :require_logout, only:   [:new]
