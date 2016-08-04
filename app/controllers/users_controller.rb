@@ -45,7 +45,7 @@ class UsersController < ApplicationController
       if @user.save
         log_in(@user)
         flash[:success] = 'User was successfully created.'
-        format.html { redirect_to root_url }
+        format.html { redirect_to current_user }
         # format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -59,7 +59,8 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        flash[:success] = 'User was successfully updated.'
+        format.html { redirect_to @user }
         # format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -115,7 +116,7 @@ class UsersController < ApplicationController
     end
 
     # Confirms an admin user.
-    #  def admin_user
-    #    redirect_to(root_url) unless current_user.admin?
-    #  end
+     def admin_user
+       redirect_to(root_url) unless current_user.admin?
+     end
 end

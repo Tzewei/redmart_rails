@@ -77,6 +77,7 @@ class ReviewsController < ApplicationController
   # end
 
   def destroy
+    @review = Review.find(params[:id])
     @review.destroy
     flash[:success] = "Review deleted"
     redirect_back(fallback_location: root_url)

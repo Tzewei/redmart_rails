@@ -1,36 +1,53 @@
 
 
-<!-- <h1>All Users</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Address</th>
-      <th>Password</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @users.each do |user| %>
+<h1>Details of All Users</h1>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-        <td><%= user.address %></td>
-        <td><%= user.password %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Address</th>
+
+        <% if current_user.admin?%>
+          <th>Password</th>
+        <% end %>
+
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br> -->
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.name %></td>
+          <td><%= user.email %></td>
+          <td><%= user.address %></td>
+          <td><% if current_user.admin?%>
+                <%= user.password_digest %>
+              <% end %>
+          </td>
 
-<%= link_to 'New User', new_user_path %>
+
+          <td><%= link_to 'Show', user %></td>
+          <td><% if current_user.admin?%>
+                  <%= link_to 'Edit', edit_user_path(user) %>
+                <% end %>
+          </td>
+          <td><% if current_user.admin? && !current_user?(user) %>
+                | <%= link_to "delete", user, method: :delete,
+                                              data: { confirm: "You sure?" } %>
+              <% end %>
+          </td>
+          <!-- <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+
+<%= link_to 'Back to Profile', current_user %>
+<!-- <%= link_to 'New User', new_user_path %>
 
 
 <% provide(:title, 'All users') %>
@@ -42,4 +59,4 @@
   <%= render @users %>
 </ul>
 
-<%#= will_paginate %>
+<%#= will_paginate %> -->

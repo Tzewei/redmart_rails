@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   # dynamic routes
   get '/signup',  to: 'users#new'
   post '/signup',  to: 'users#create'
+  
+
 
 
   # login routes

@@ -14,7 +14,7 @@
                   price: price)
 end
 
-User.create!(name:  "admin",
+User.create!(name:  "Admin",
              email: "admin@gmail.com",
              password:              "1234",
              password_confirmation: "1234",
